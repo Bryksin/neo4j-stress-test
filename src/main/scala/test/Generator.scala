@@ -1,4 +1,4 @@
-package Syncordia
+package test
 
 import org.nohope.test.TRandom
 

@@ -1,6 +1,6 @@
-package Syncordia
+package test
 
-import Syncordia.settings.{LoadSettings, LoadData}
+import test.settings.{LoadSettings, LoadData}
 import com.typesafe.scalalogging.StrictLogging
 
 /**
@@ -10,19 +10,21 @@ object Tester extends App with StrictLogging{
 
   override def main(args: Array[String]) = {
 
-    logger.info("Supported args: clear, fill, rw")
-
-    DatabaseManager.initDb()
-    DatabaseManager.clearDatabase()
-    DatabaseManager.fillDatabase()
-
+    logger.info("Supported args: localtest, clear, fill, rw")
     val argsSet: Set[String] = args.toSet
+
+    if (argsSet.contains("localtest")) {
+      DatabaseManager.initDb(true)
+    } else {
+      DatabaseManager.initDb(false)
+    }
+
     if (argsSet.contains("clear")) {
       DatabaseManager.clearDatabase()
     }
 
     if (argsSet.contains("fill")) {
-
+      DatabaseManager.fillDatabase()
     }
     if (argsSet.contains("rw")) {
 

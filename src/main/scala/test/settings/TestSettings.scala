@@ -1,4 +1,4 @@
-package Syncordia.settings
+package test.settings
 import scala.collection.JavaConverters._
 import scala.collection.mutable
 

@@ -1,8 +1,8 @@
-package Syncordia
+package test
 
 import java.sql._
 
-import Syncordia.settings._
+import test.settings._
 import com.typesafe.scalalogging.StrictLogging
 import org.nohope.test.stress.action.Invoke
 import org.nohope.test.stress.{Action, MeasureProvider, TimerResolution, StressScenario}
@@ -19,18 +19,25 @@ object DatabaseManager extends StrictLogging {
   private var gen: Generator = null
   private var con: Connection = null
 
-  def initDb() = {
+  def initDb(isLocalTest: Boolean) = {
+
+    if (isLocalTest)
+      settings = new ExperimentSettings
+    else
+      settings = new LoadSettings
+
     db = new LoadData
-    settings = new ExperimentSettings
     gen = new Generator
+
+    Class.forName("org.neo4j.jdbc.Driver")
   }
 
   def getConnection() : Connection = {
-    if (con != null) {
+    if (con != null && !con.isClosed()) {
       return con
     } else {
       try {
-        Class.forName("org.neo4j.jdbc.Driver")
+
         logger.info("Connecting to: " +db.remoteUrl)
         con = DriverManager.getConnection(db.remoteUrl, db.user, db.pass)
         logger.info("Connected")
