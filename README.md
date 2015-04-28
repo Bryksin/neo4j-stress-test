@@ -2,12 +2,12 @@
 
 This code is written to test Neo4j database performance.
  
-Please note: Code is not fully complete and so far include the fallowing functionality:
-1. Clear Database
+Please note: Code is not fully complete and so far include the fallowing functionality:<br />
+1. Clear Database<br />
 2. Fill Database with dummy random data
 
-Not implemented yet:
-3. Read/Write Test
+Not implemented yet:<br />
+3. Read/Write Test<br />
 4. Read/Write test in distributed mode on Amazon AWS
 
 
