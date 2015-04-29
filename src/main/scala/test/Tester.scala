@@ -1,6 +1,5 @@
 package test
 
-import test.settings.{LoadSettings, LoadData}
 import com.typesafe.scalalogging.StrictLogging
 
 /**
